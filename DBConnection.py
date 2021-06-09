@@ -7,8 +7,8 @@ class DBConnection:
     connection = None  # Database connection reference
     host = 'localhost'
     username = 'root'
-    # password = '4652581'
-    password = 'rootroot'
+    password = '4652581'
+    # password = 'rootroot'
     db = 'python_final'
     table = 'passwords'
 
