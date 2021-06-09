@@ -1,5 +1,4 @@
 from pymysql import *
-from validations import *
 
 
 class DBConnection:

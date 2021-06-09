@@ -6,7 +6,7 @@ from validations import is_integer, file_exists
 
 class View:
     """
-
+    Main program view.
     """
 
     def __init__(self, view: Tk):
@@ -26,15 +26,15 @@ class View:
         if not self.fill_tree_view(Programm.get_passwords(), self.tree):
             messagebox.showerror("Error", "There aren't any records to display")
 
-        #================================================================================
-        #================================ for tests only ================================
+        # ================================================================================
+        # ================================ for tests only ================================
 
         self.file_path_entry.delete(0, END)
         self.file_path_entry.insert(0, "diceware.txt")
 
         self.number_entry.delete(0, END)
         self.number_entry.insert(0, 3)
-        #================================================================================
+        # ================================================================================
 
     @property
     def file_path_label(self) -> Label:
@@ -121,20 +121,20 @@ class View:
         """
         self.__submit_button = val
 
-    def create_file_path_entry(self):
+    def create_file_path_entry(self) -> None:
         """
-
-        :return:
+        Create path label in view
+        :return: None
         """
         self.file_path_label = Label(self.view, text="File Path")
         self.file_path_label.grid(row=0, column=0)
         self.file_path_entry = Entry(self.view)
         self.file_path_entry.grid(row=1, column=0)
 
-    def create_entry_number(self):
+    def create_entry_number(self) -> None:
         """
-
-        :return:
+        Create number entry in view
+        :return: None
         """
         self.number_label = Label(self.view, text="Number")
         self.number_label.grid(row=0, column=1)
@@ -143,13 +143,17 @@ class View:
 
     def create_submit_button(self) -> None:
         """
-        create submit button
+        Create submit button in view
         :return: None
         """
         self.__submit_button = Button(self.view, text='Submit', command=self.on_submit_login)
         self.__submit_button.grid(row=1, column=2)
 
-    def on_submit_login(self):
+    def on_submit_login(self) -> None:
+        """
+        Function called by clicking on submit button
+        :return: None
+        """
         path = self.file_path_entry.get()
         number = self.number_entry.get()
         if is_integer(number) and file_exists(path):
@@ -164,7 +168,12 @@ class View:
         else:
             messagebox.showwarning("Warning", "Path must be path to valid file. Number must be an integer")
 
-    def on_tree_select(self, event):
+    def on_tree_select(self, event) -> None:
+        """
+        Function
+        :param event:
+        :return:
+        """
         values = []
         for item in self.tree.selection():
             row_values = self.tree.item(item, 'values')
@@ -183,11 +192,10 @@ class View:
 
     def create_tree_view(self, columns: tuple, height: int) -> Treeview:
         """
-        Function creates a new Treeview
-        :param parent: A parent window to display the treeview at
-        :param columns: Treeview columns
-        :param height: Treeview screen height
-        :return: Treeview object reference
+        Function creates a new Tree view
+        :param columns: Tree view columns
+        :param height: Tree view screen height
+        :return: Tree view object reference
         """
         tree = Treeview(self.view, column=columns, show='headings', selectmode="extended", height=height)
         tree.bind("<<TreeviewSelect>>", self.on_tree_select)
@@ -195,9 +203,9 @@ class View:
 
     def fill_tree_view(self, data: list, tree: Treeview) -> bool:
         """
-        Function fills an existing treeview with given data (list of dictionaries which contain the data to display)
+        Function fills an existing tree view with given data (list of dictionaries which contain the data to display)
         :param data: Data to display
-        :param tree: Treeview to display the data at
+        :param tree: Tree view to display the data at
         :return: True if there is some data to display and the data format is valid and False otherwise
         """
         # If parameters are valid
