@@ -1,6 +1,6 @@
 from tkinter import Tk, Entry, Button, Label, CENTER, END, messagebox, NO, Toplevel
 from tkinter.ttk import Treeview
-from Programm import Programm
+from Program import Program
 from validations import is_integer, file_exists
 
 
@@ -23,7 +23,7 @@ class View:
 
         self.tree = self.create_tree_view(("1", "2"), 400)
         self.tree.grid(row=3, column=0, columnspan=3)
-        if not self.fill_tree_view(Programm.get_passwords(), self.tree):
+        if not self.fill_tree_view(Program.get_passwords(), self.tree):
             messagebox.showerror("Error", "There aren't any records to display")
 
         # ================================================================================
@@ -157,12 +157,12 @@ class View:
         path = self.file_path_entry.get()
         number = self.number_entry.get()
         if is_integer(number) and file_exists(path):
-            if Programm.make_password(path, int(number)):
-                if not self.fill_tree_view(Programm.get_passwords(), self.tree):
+            if Program.make_password(path, int(number)):
+                if not self.fill_tree_view(Program.get_passwords(), self.tree):
                     messagebox.showwarning("Warning", "There aren't any records to display")
                 else:
                     self.tree.delete(*self.tree.get_children())
-                    self.fill_tree_view(Programm.get_passwords(), self.tree)
+                    self.fill_tree_view(Program.get_passwords(), self.tree)
             else:
                 messagebox.showwarning("Warning", "There aren't any records to display")
         else:

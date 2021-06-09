@@ -2,7 +2,7 @@ from DBConnection import DBConnection
 from helpers import generate_random_numbers_string
 
 
-class Programm:
+class Program:
 
     @staticmethod
     def get_passwords() -> object:
@@ -34,7 +34,7 @@ class Programm:
         password = ""
         for i in range(number):
             rand_line = generate_random_numbers_string()
-            password += Programm.find_string_by_number(rand_line, path)
+            password += Program.find_string_by_number(rand_line, path)
 
         return password
 
@@ -46,8 +46,8 @@ class Programm:
         :param number:
         :return: true if success otherwise false
         """
-        password = Programm.generate_password(path, number)
-        return Programm.save_password(password)
+        password = Program.generate_password(path, number)
+        return Program.save_password(password)
 
     @staticmethod
     def find_string_by_number(number, path) -> str:
