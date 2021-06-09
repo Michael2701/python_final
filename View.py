@@ -146,10 +146,10 @@ class View:
         Create submit button in view
         :return: None
         """
-        self.__submit_button = Button(self.view, text='Submit', command=self.on_submit_login)
+        self.__submit_button = Button(self.view, text='Submit', command=self.on_submit_clicked)
         self.__submit_button.grid(row=1, column=2)
 
-    def on_submit_login(self) -> None:
+    def on_submit_clicked(self) -> None:
         """
         Function called by clicking on submit button
         :return: None
