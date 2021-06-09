@@ -169,10 +169,10 @@ class View:
         for item in self.tree.selection():
             row_values = self.tree.item(item, 'values')
             values.append(row_values[1])
-
-        self.view.clipboard_clear()
-        self.view.clipboard_append(values[0])
-        self.show_notification("Password copied to clipboard")
+        if len(values) > 0:
+            self.view.clipboard_clear()
+            self.view.clipboard_append(values[0])
+            self.show_notification("Password copied to clipboard")
 
     def show_notification(self, message: str, duration="1000") -> None:
         top = Toplevel()
