@@ -168,11 +168,10 @@ class View:
         else:
             messagebox.showwarning("Warning", "Path must be path to valid file. Number must be an integer")
 
-    def on_tree_select(self, event) -> None:
+    def on_tree_select(self) -> None:
         """
-        Function
-        :param event:
-        :return:
+        Function called by clicking on tree item
+        :return: None
         """
         values = []
         for item in self.tree.selection():
@@ -184,6 +183,12 @@ class View:
             self.show_notification("Password copied to clipboard")
 
     def show_notification(self, message: str, duration="1000") -> None:
+        """
+        This function show simple pop up window
+        :param message: showing message
+        :param duration: showing time
+        :return: None
+        """
         top = Toplevel()
         top.title('')
         lb = Label(top, text=message)
